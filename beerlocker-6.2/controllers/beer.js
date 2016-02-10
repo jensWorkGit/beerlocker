@@ -14,9 +14,9 @@ exports.postBeers = function (req, res) {
 
     // Save the beer and check for errors
     beer.save(function (err) {
-      if(err) {
-        res.send(err);
-      }
+        if(err) {
+            res.send(err);
+        }
 
         res.json({message: 'Beer added to the locker!', data: beer});
     });
@@ -26,9 +26,9 @@ exports.postBeers = function (req, res) {
 exports.getBeers = function (req, res) {
     // Use the Beer model to find all beer
     Beer.find({userId: req.user._id}, function (err, beers) {
-      if(err) {
-        res.send(err);
-      }
+        if(err) {
+            res.send(err);
+        }
 
         res.json(beers);
     });
@@ -38,9 +38,9 @@ exports.getBeers = function (req, res) {
 exports.getBeer = function (req, res) {
     // Use the Beer model to find a specific beer
     Beer.find({userId: req.user._id, _id: req.params.beer_id}, function (err, beer) {
-      if(err) {
-        res.send(err);
-      }
+        if(err) {
+            res.send(err);
+        }
 
         res.json(beer);
     });
@@ -50,14 +50,14 @@ exports.getBeer = function (req, res) {
 exports.putBeer = function (req, res) {
     // Use the Beer model to find a specific beer
     Beer.update({
-        userId: req.user._id,
-        _id: req.params.beer_id
-    },
+            userId: req.user._id,
+            _id: req.params.beer_id
+        },
         {quantity: req.body.quantity},
         function (err, num, raw) {
-          if(err) {
-            res.send(err);
-          }
+            if(err) {
+                res.send(err);
+            }
 
             res.json({message: num + ' updated'});
         });
@@ -67,9 +67,9 @@ exports.putBeer = function (req, res) {
 exports.deleteBeer = function (req, res) {
     // Use the Beer model to find a specific beer and remove it
     Beer.remove({userId: req.user._id, _id: req.params.beer_id}, function (err) {
-      if(err) {
-        res.send(err);
-      }
+        if(err) {
+            res.send(err);
+        }
 
         res.json({message: 'Beer removed from the locker!'});
     });

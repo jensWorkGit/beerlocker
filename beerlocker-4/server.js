@@ -10,6 +10,7 @@ var userController = require('./controllers/user');
 var authController = require('./controllers/auth');
 var oauth2Controller = require('./controllers/oauth2');
 var clientController = require('./controllers/client');
+var codeController = require('./controllers/code');
 
 // Connect to the beerlocker MongoDB
 mongoose.connect('mongodb://localhost:27017/beerlocker');
@@ -57,7 +58,10 @@ router.route('/users')
 // Create endpoint handlers for /clients
 router.route('/clients')
     .post(authController.isAuthenticated, clientController.postClients)
-    .get(authController.isAuthenticated, clientController.getClients);
+    .get(authController.isAuthenticated, clientController.getClients)
+
+router.route('/codes')
+    .get(authController.isAuthenticated, codeController.getCodes)
 
 // Create endpoint handlers for oauth2 authorize
 router.route('/oauth2/authorize')

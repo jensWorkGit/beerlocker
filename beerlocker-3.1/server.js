@@ -12,7 +12,7 @@ var app = express();
 
 // Use the body-parser package in our application
 app.use(bodyParser.urlencoded({
-  extended: true
+    extended: true
 }));
 
 // Create our Express router
@@ -20,14 +20,14 @@ var router = express.Router();
 
 // Create endpoint handlers for /beers
 router.route('/beers')
-  .post(beerController.postBeers)
-  .get(beerController.getBeers);
+    .post(beerController.postBeers)
+    .get(beerController.getBeers);
 
 //Create endpoint handlers for /beers/:beer_id
 router.route('/beers/:beer_id')
-  .get(beerController.getBeer)
-  .put(beerController.putBeer)
-  .delete(beerController.deleteBeer);
+    .get(beerController.getBeer)
+    .put(beerController.putBeer)
+    .delete(beerController.deleteBeer);
 
 // Register all our routes with /api
 app.use('/api', router);

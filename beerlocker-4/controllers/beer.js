@@ -50,9 +50,9 @@ exports.getBeer = function (req, res) {
 exports.putBeer = function (req, res) {
     // Use the Beer model to find a specific beer
     Beer.update({
-        userId: req.user._id,
-        _id: req.params.beer_id
-    },
+            userId: req.user._id,
+            _id: req.params.beer_id
+        },
         {quantity: req.body.quantity},
         function (err, num, raw) {
             if(err) {

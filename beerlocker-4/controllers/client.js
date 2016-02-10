@@ -14,9 +14,9 @@ exports.postClients = function (req, res) {
 
     // Save the client and check for errors
     client.save(function (err) {
-      if(err) {
-        res.send(err);
-      }
+        if(err) {
+            res.send(err);
+        }
 
         res.json({message: 'Client added to the locker!', data: client});
     });
@@ -26,9 +26,9 @@ exports.postClients = function (req, res) {
 exports.getClients = function (req, res) {
     // Use the Client model to find all clients
     Client.find({userId: req.user._id}, function (err, clients) {
-      if(err) {
-        res.send(err);
-      }
+        if(err) {
+            res.send(err);
+        }
 
         res.json(clients);
     });

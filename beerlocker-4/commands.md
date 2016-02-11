@@ -56,9 +56,9 @@ http://localhost:3000/api/oauth2/authorize?client_id=test&response_type=code&red
 http://localhost:3000/api/oauth2/authorize?client_id=test&response_type=code&redirect_uri=http://localhost:3000
 http://localhost:3000/api/oauth2/authorize?client_id=test&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A3000
 http://localhost:3000/api/oauth2/authorize?client_id=test&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A3000
-qQ13me01nlriCo26
-
-eAn2GnfjfhplZn88
-
+http://localhost:3000/api/oauth2/authorize?client_id=this_is_my_id&response_type=code&redirect_uri=http://localhost:3000
+http://localhost:3000/api/oauth2/authorize?client_id=this_is_my_id1&response_type=code&redirect_uri=http://localhost:3000
+http://localhost:3000/api/oauth2/authorize?client_id=sec&response_type=code&redirect_uri=http://localhost:3000
+JBcwZwjBXqqfCxzM
 
 Cannot GET /?code=iE1GzLPoaRiJirNO

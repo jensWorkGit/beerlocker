@@ -49,8 +49,6 @@ server.deserializeClient(function (id, callback) {
 // values, and will be exchanged for an access token.
 
 server.grant(oauth2orize.grant.code(function (client, redirectUri, user, ares, callback) {
-    console.log('grant code - clientId is: ' + client._id);
-
     // Create a new authorization code
     var code = new Code({
         value: uid(16),
@@ -84,17 +82,8 @@ server.exchange(oauth2orize.exchange.code(function (client, code, redirectUri, c
             return callback(null, false);
         }
 
-        var strClientId = client._id;
-        console.log('exchange.code - code is: ' + code);
-        console.log('exchange.code - client._id is: ' + strClientId);
-        console.log('exchange.code - client.id is: ' + client.id);
-        console.log('exchange.code - authCode.clientId is: ' + authCode.clientId);
-
-        var strClientIdStringy = JSON.stringify(client._id);
-        console.log(strClientIdStringy);
-
-
-        if(strClientIdStringy !== authCode.clientId) {
+        var strClientId = client._id.toString();
+        if(strClientId !== authCode.clientId) {
             return callback(null, false);
         }
         if(redirectUri !== authCode.redirectUri) {

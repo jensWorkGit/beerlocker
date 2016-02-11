@@ -73,7 +73,7 @@ server.grant(oauth2orize.grant.code(function (client, redirectUri, user, ares, c
 // application issues an access token on behalf of the user who authorized the
 // code.
 
-server.exchange(oauth2orize.exchange.code(function (client, code, redirectUri, callback) {
+server.exchange(oauth2orize.exchange.code(function (client, code, redirectUri, clientObj, callback) {
     Code.findOne({value: code}, function (err, authCode) {
         if(err) {
             return callback(err);
@@ -81,7 +81,9 @@ server.exchange(oauth2orize.exchange.code(function (client, code, redirectUri, c
         if(authCode === undefined) {
             return callback(null, false);
         }
-        if(client._id.toString() !== authCode.clientId) {
+        console.log(code);
+
+        if(clientObj.clientId !== authCode.clientId) {
             return callback(null, false);
         }
         if(redirectUri !== authCode.redirectUri) {

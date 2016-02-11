@@ -8,6 +8,15 @@ client1:
     "__v" : 0
 }
 
+{
+    "_id" : ObjectId("56bb39d29f7c26b00b892a8f"),
+    "userId" : "56bb2c4d7c64e64c1a7668f7",
+    "secret" : "test",
+    "id" : "test",
+    "name" : "test other server",
+    "__v" : 0
+}
+
 code
 {
     "_id" : ObjectId("56bb4993b4cd94ec26223d2e"),
@@ -26,6 +35,11 @@ code
     "redirect_uri" : "http://localhost:3000"
 }
 
+{
+    "code" : "qQ13me01nlriCo26",
+    "grant_type" : "authorization_code",
+    "redirect_uri" : "http://localhost:3000"
+}
 
 
 
@@ -37,7 +51,14 @@ code
 
 http://localhost:3000/api/oauth2/authorize?client_id=myId&response_type=code&redirect_uri=http://localhost:3000
 http://localhost:3000/api/oauth2/authorize?client_id=test&response_type=code&redirect_uri=http://localhost:3000
+http://localhost:3000/api/oauth2/authorize?client_id=i1&response_type=code&redirect_uri=http://localhost:3000
+http://localhost:3000/api/oauth2/authorize?client_id=test&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A3000
+http://localhost:3000/api/oauth2/authorize?client_id=test&response_type=code&redirect_uri=http://localhost:3000
+http://localhost:3000/api/oauth2/authorize?client_id=test&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A3000
+http://localhost:3000/api/oauth2/authorize?client_id=test&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A3000
 qQ13me01nlriCo26
+
+eAn2GnfjfhplZn88
 
 
 Cannot GET /?code=iE1GzLPoaRiJirNO

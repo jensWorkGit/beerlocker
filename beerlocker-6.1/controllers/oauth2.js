@@ -81,7 +81,9 @@ server.exchange(oauth2orize.exchange.code(function (client, code, redirectUri, c
         if(authCode === undefined) {
             return callback(null, false);
         }
-        if(client._id.toString() !== authCode.clientId) {
+
+        var strClientId = client._id.toString();
+        if(strClientId !== authCode.clientId) {
             return callback(null, false);
         }
         if(redirectUri !== authCode.redirectUri) {

@@ -10,6 +10,7 @@ var userController = require('./controllers/user');
 var authController = require('./controllers/auth');
 var oauth2Controller = require('./controllers/oauth2');
 var clientController = require('./controllers/client');
+var codeController = require('./controllers/code');
 
 // Connect to the beerlocker MongoDB
 mongoose.connect('mongodb://localhost:27017/beerlocker');
@@ -22,14 +23,14 @@ app.set('view engine', 'ejs');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-  extended: true
+    extended: true
 }));
 
 // Use express session support since OAuth2orize requires it
-app.use(session({ 
-  secret: 'Super Secret Session Key',
-  saveUninitialized: true,
-  resave: true
+app.use(session({
+    secret: 'Super Secret Session Key',
+    saveUninitialized: true,
+    resave: true
 }));
 
 // Use the passport package in our application
@@ -40,33 +41,36 @@ var router = express.Router();
 
 // Create endpoint handlers for /beers
 router.route('/api/beers')
-  .post(authController.isAuthenticated, beerController.postBeers)
-  .get(authController.isAuthenticated, beerController.getBeers);
+    .post(authController.isAuthenticated, beerController.postBeers)
+    .get(authController.isAuthenticated, beerController.getBeers);
 
 // Create endpoint handlers for /beers/:beer_id
 router.route('/api/beers/:beer_id')
-  .get(authController.isAuthenticated, beerController.getBeer)
-  .put(authController.isAuthenticated, beerController.putBeer)
-  .delete(authController.isAuthenticated, beerController.deleteBeer);
+    .get(authController.isAuthenticated, beerController.getBeer)
+    .put(authController.isAuthenticated, beerController.putBeer)
+    .delete(authController.isAuthenticated, beerController.deleteBeer);
 
 // Create endpoint handlers for /users
 router.route('/api/users')
-  .post(userController.postUsers)
-  .get(authController.isAuthenticated, userController.getUsers);
+    .post(userController.postUsers)
+    .get(authController.isAuthenticated, userController.getUsers);
 
 // Create endpoint handlers for /clients
 router.route('/api/clients')
-  .post(authController.isAuthenticated, clientController.postClients)
-  .get(authController.isAuthenticated, clientController.getClients);
+    .post(authController.isAuthenticated, clientController.postClients)
+    .get(authController.isAuthenticated, clientController.getClients);
+
+router.route('/api/codes')
+    .get(authController.isAuthenticated, codeController.getCodes);
 
 // Create endpoint handlers for oauth2 authorize
 router.route('/api/oauth2/authorize')
-  .get(authController.isAuthenticated, oauth2Controller.authorization)
-  .post(authController.isAuthenticated, oauth2Controller.decision);
+    .get(authController.isAuthenticated, oauth2Controller.authorization)
+    .post(authController.isAuthenticated, oauth2Controller.decision);
 
 // Create endpoint handlers for oauth2 token
-router.route('/api/oauth2/token')
-  .post(authController.isClientAuthenticated, oauth2Controller.token);
+router.route('/api/token')
+    .post(authController.isClientAuthenticated, oauth2Controller.token);
 
 // Register all our routes
 app.use(router);
